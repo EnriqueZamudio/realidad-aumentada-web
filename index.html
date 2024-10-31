@@ -12,15 +12,32 @@
     <a-scene embedded arjs>
         <!-- Marcador para que el contenido aparezca cuando lo detecte la cámara -->
         <a-marker preset="hiro">
-            <!-- Modelo 3D girado 180 grados en su eje Y -->
+            <!-- Modelo 3D girado 180 grados en su eje Y y recostado sobre el eje X -->
             <a-entity 
                 gltf-model="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF/Duck.gltf" 
                 rotation="90 180 0" 
-                scale="0.5 0.5 0.5">
+                scale="0.5 0.5 0.5" 
+                id="model">
             </a-entity>
         </a-marker>
         <!-- Cámara AR -->
         <a-entity camera></a-entity>
+        <!-- Componente para mantener el modelo visible -->
+        <a-entity visible="true" id="persistent-model"></a-entity>
     </a-scene>
+
+    <script>
+        // Mantener el modelo visible una vez detectado el marcador
+        const marker = document.querySelector('a-marker');
+        const model = document.getElementById('model');
+
+        marker.addEventListener('markerFound', () => {
+            model.setAttribute('visible', true);
+        });
+
+        marker.addEventListener('markerLost', () => {
+            model.setAttribute('visible', true); // Mantener el modelo visible
+        });
+    </script>
 </body>
 </html>
