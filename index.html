@@ -9,13 +9,13 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
     <!-- Escena en A-Frame con AR.js -->
-    <a-scene embedded arjs>
+    <a-scene embedded arjs="detectionMode: mono_and_matrix; patternRatio: 0.9;">
         <!-- Marcador para que el contenido aparezca cuando lo detecte la cámara -->
         <a-marker preset="hiro">
-            <!-- Modelo 3D o contenido de RA -->
+            <!-- Modelo 3D girado 180 grados en su eje Y -->
             <a-entity 
                 gltf-model="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF/Duck.gltf" 
-                rotation="90 180 0"
+                rotation="90 180 0" 
                 scale="0.5 0.5 0.5">
             </a-entity>
         </a-marker>
